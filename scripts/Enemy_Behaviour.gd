@@ -14,6 +14,8 @@ var playerIsVisible = false
 onready var tween = get_node("Tween")
 onready var timer = get_node("Timer")
 onready var lightCone = get_node("SpotLight2")
+
+signal gameOver
 	
 func _ready():
 	lightCone.light_color = Color.green
@@ -68,6 +70,7 @@ func _physics_process(delta):
 					rotation_degrees, Vector3(0,rotation_degrees.y - signedEnemyPlayerAngle, 0), 0.1,
 					Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 					tween.start()
+				emit_signal("gameOver")
 				#look_at(get_node("../Player").global_transform.origin, Vector3.UP)
 			else:
 				if playerIsVisible:
