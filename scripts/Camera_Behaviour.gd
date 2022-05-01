@@ -11,12 +11,15 @@ var lastDirection
 
 var playerIsInViewAngle = false
 var playerIsVisible = false
+var isActive = true
 
 onready var tween = get_node("Tween")
-onready var lightCone = get_node("SpotLight2")
+onready var lightCone = get_node("SpotLight")
+
+signal gameOver
 	
 func _ready():
-	lightCone.light_color = Color.green
+	#lightCone.light_color = Color.green
 	var viewAngleRad = viewAngle * PI / 180
 	
 	viewConeVector1.x = sin(viewAngleRad/2)
@@ -56,7 +59,7 @@ func _physics_process(delta):
 		signedEnemyPlayerAngle = -enemyPlayerAngle
 	var targetRotation = rotation_degrees.y - signedEnemyPlayerAngle
 	
-	if enemyPlayerAngle < viewAngle / 2 and transform.origin.distance_to(playerPosition) > 2:
+	if enemyPlayerAngle < viewAngle / 2 and transform.origin.distance_to(playerPosition) > 2 and isActive:
 		playerIsInViewAngle = true
 		viewConeColor = Color.yellow
 		# raycast
@@ -79,6 +82,7 @@ func _physics_process(delta):
 					rotation_degrees, Vector3(0,targetRotation, 0), 0.3,
 					Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 					tween.start()
+				emit_signal("gameOver")
 				#look_at(get_node("../Player").global_transform.origin, Vector3.UP)
 			else:
 				if playerIsVisible:
@@ -99,18 +103,8 @@ func _physics_process(delta):
 		if rotation_degrees.y > 180:
 			rotation_degrees.y -= 360
 		#print(rotation_degrees)
-	
-	
-	# turn enemy around
-	if Input.is_action_just_pressed("action"):
-		#print("SPACE pressed!")
-		#rotate_y(deg2rad(180.0))
-		lastDirection = rotation_degrees + Vector3(0, 180, 0)
-		if rotation_degrees.y > 180:
-			rotation_degrees.y -= 360
-		tween.interpolate_property(self, "rotation_degrees",
-		rotation_degrees, rotation_degrees + Vector3(0, 180, 0), 1,
-		Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
-		tween.start()
-		
-	
+
+func active(state):
+	isActive = state
+	if state == false:
+		get_node("SpotLight").visible = false
