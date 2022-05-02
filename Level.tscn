@@ -35,7 +35,6 @@ background_mode = 1
 background_color = Color( 0.18, 0.18, 0.18, 1 )
 ambient_light_color = Color( 0.8, 0.8, 0.8, 1 )
 ss_reflections_max_steps = 16
-ssao_enabled = true
 ssao_intensity = 0.5
 ssao_blur = 2
 glow_enabled = true
@@ -44,7 +43,6 @@ glow_strength = 0.8
 glow_hdr_threshold = 0.0
 glow_hdr_luminance_cap = 6.37
 glow_hdr_scale = 0.95
-adjustment_enabled = true
 adjustment_contrast = 1.15
 
 [sub_resource type="CubeMesh" id=20]
@@ -121,6 +119,11 @@ transform = Transform( -1.5, 0, -2.59808, 0, 1.5, 0, 2.59808, 0, -1.5, -8.374, 1
 
 [node name="Lasers" parent="." instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.06897, 0.537892, -5.19605 )
+
+[node name="Lasers2" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47124, 0.537892, -1.96367 )
+interval_on = 5
+interval_off = 1.0
 
 [node name="Floor" type="Spatial" parent="."]
 transform = Transform( 7, 0, 0, 0, 0.1, 0, 0, 0, 12, -2, -0.1, 0 )
@@ -293,6 +296,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 [connection signal="gameOver" from="Enemy" to="." method="_on_Enemy_gameOver"]
 [connection signal="gameOver" from="Surveillance_Camera" to="." method="_on_Surveillance_Camera_gameOver"]
 [connection signal="gameOver" from="Lasers" to="." method="_on_Lasers_gameOver"]
+[connection signal="gameOver" from="Lasers2" to="." method="_on_Lasers_gameOver"]
 [connection signal="victory" from="Goal" to="." method="_on_Goal_victory"]
 [connection signal="gameOver" from="Pressure_Plate" to="." method="_on_Pressure_Plate_gameOver"]
 [connection signal="area_entered" from="Terminal/TerminalArea" to="Terminal" method="_on_TerminalArea_area_entered"]

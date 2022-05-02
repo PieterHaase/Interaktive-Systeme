@@ -2,8 +2,8 @@ extends Spatial
 
 onready var timer = get_node("Timer")
 export var beamLength = 4
-export onready var interval_on = 3
-export onready var interval_off = 1.5
+export var interval_on = 3
+export var interval_off = 1.5
 var isOn = true
 
 onready var laser1 = get_node("Laser")
