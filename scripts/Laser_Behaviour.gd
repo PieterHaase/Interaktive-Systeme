@@ -16,6 +16,9 @@ signal gameOver
 func _ready():
 	timer.set_wait_time(interval_on)
 	timer.start()
+	
+func _process(delta):
+	laser1.get_active_material(0).uv1_offset += Vector3(0.0003, 0, 0.0004)
 
 
 func _physics_process(delta):
