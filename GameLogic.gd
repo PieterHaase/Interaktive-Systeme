@@ -2,11 +2,15 @@ extends Spatial
 
 
 var gameOver = false
+export var godMode = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_node("Enemy").connect("gameOver", self, "_on_Enemy_gameOver")
+	get_node("Lasers").connect("gameOver", self, "_on_Lasers_gameOver")
+	get_node("Lasers2").connect("gameOver", self, "_on_Lasers_gameOver")
+	get_node("Surveillance_Camera").connect("gameOver", self, "_on_Surveillance_Camera_gameOver")
 	
 func _process(delta):
 	if Input.is_action_just_pressed("action") and gameOver:
@@ -14,10 +18,11 @@ func _process(delta):
 
 
 func gameOver():
-	gameOver = true
-	get_node("Player").deactivateControls()
-	get_node("CanvasLayer/GameOverText").visible = true
-	get_node("CanvasLayer/ColorRect").visible = true
+	if godMode == false:
+		gameOver = true
+		get_node("Player").deactivateControls()
+		get_node("CanvasLayer/GameOverText").visible = true
+		get_node("CanvasLayer/ColorRect").visible = true
 
 func _on_Enemy_gameOver():
 	gameOver()
@@ -30,9 +35,9 @@ func _on_Surveillance_Camera_gameOver():
 func _on_Lasers_gameOver():
 	gameOver()
 
-
-func _on_Pressure_Plate_gameOver():
+func _on_Ghost_Trap_gameOver():
 	gameOver()
+
 
 
 func _on_Goal_victory():
@@ -45,3 +50,5 @@ func _on_Goal_victory():
 
 func showPrompt(text):
 	get_node("CanvasLayer/GameOverText").text = text
+
+

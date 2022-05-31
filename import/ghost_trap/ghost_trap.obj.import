@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/ghost_trap.obj-c4b91a3eaa629139310b868fe42f1940.mesh"
+
+[deps]
+
+files=[ "res://.import/ghost_trap.obj-c4b91a3eaa629139310b868fe42f1940.mesh" ]
+
+source_file="res://import/ghost_trap/ghost_trap.obj"
+dest_files=[ "res://.import/ghost_trap.obj-c4b91a3eaa629139310b868fe42f1940.mesh", "res://.import/ghost_trap.obj-c4b91a3eaa629139310b868fe42f1940.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

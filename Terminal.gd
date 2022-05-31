@@ -26,7 +26,7 @@ func _physics_process(delta):
 		deactivationProgress += 1
 		progressBar.visible = true
 		progressBar.value = deactivationProgress / (60 * deactivationTime) * 100
-		print(progressBar.value)
+		#print(progressBar.value)
 		if deactivationProgress == 60 * deactivationTime:
 			deactivationProgress = 0
 			isActive = false
@@ -35,7 +35,7 @@ func _physics_process(delta):
 			screen.get_active_material(0).albedo_color = Color(0.2, 0.2, 0.2)
 			surveillanceCamera.active(false)
 			promptLabel.text = ""
-			print("deactivated")
+			#print("deactivated")
 			
 	if Input.is_action_just_released("action"):
 		#sprite3D.visible = false

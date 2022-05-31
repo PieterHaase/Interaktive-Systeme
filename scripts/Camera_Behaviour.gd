@@ -1,7 +1,7 @@
 extends Spatial
 
 export var viewAngle := 80
-export var viewDistance := 2
+export var viewDistance := 7
 export var movementAngle := 160
 var viewConeVector1 : Vector3
 var viewConeVector2 : Vector3
